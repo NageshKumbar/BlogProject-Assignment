@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">Latest Blogs</h2>
+
+<div class="row">
+    {% for blog in blogs %}
+    <div class="col-md-4 mb-4">
+        <div class="card shadow-sm p-3">
+
+            <h4>{{ blog.title }}</h4>
+            <p class="text-muted small">By {{ blog.user.username }}</p>
+
+            <p>{{ blog.content|truncatewords:20 }}</p>
+
+            <small class="text-muted">{{ blog.created_at }}</small>
+
+        </div>
+    </div>
+    {% empty %}
+    <p>No blogs available</p>
+    {% endfor %}
+</div>
+
+<style>
+.card:hover {
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+</style>
+
+{% endblock %}
